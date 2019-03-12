@@ -32,7 +32,7 @@ export function getSongsUrl(songs) {
   let types = []
 
   songs.forEach((song) => {
-    mids.push(song.mid)
+    mids.push(song.mind)
     types.push(0)
   })
 
