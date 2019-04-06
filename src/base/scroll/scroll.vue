@@ -7,6 +7,9 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
 
+  const DIRECTION_H = 'horizontal'
+  const DIRECTION_V = 'vertical'
+
   export default {
     props: {
       probeType: {
@@ -15,7 +18,7 @@
       },
       click: {
         type: Boolean,
-        default: true
+        default: false
       },
       listenScroll: {
         type: Boolean,
@@ -24,6 +27,22 @@
       data: {
         type: Array,
         default: null
+      },
+      pullup: {
+        type: Boolean,
+        default: false
+      },
+      beforeScroll: {
+        type: Boolean,
+        default: false
+      },
+      refreshDelay: {
+        type: Number,
+        default: 20
+      },
+      direction: {
+        type: String,
+        default: DIRECTION_V
       }
     },
     mounted() {
@@ -38,13 +57,27 @@
         }
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
-          click: this.click
+          click: this.click,
+          eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
         })
 
         if (this.listenScroll) {
-          let me = this
           this.scroll.on('scroll', (pos) => {
-            me.$emit('scroll', pos)
+            this.$emit('scroll', pos)
+          })
+        }
+
+        if (this.pullup) {
+          this.scroll.on('scrollEnd', () => {
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+              this.$emit('scrollToEnd')
+            }
+          })
+        }
+
+        if (this.beforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
           })
         }
       },
@@ -68,7 +101,7 @@
       data() {
         setTimeout(() => {
           this.refresh()
-        }, 20)
+        }, this.refreshDelay)
       }
     }
   }
