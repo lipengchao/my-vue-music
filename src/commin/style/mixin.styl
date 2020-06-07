@@ -1,0 +1,88 @@
+// 背景图片
+bg-image($url)
+  background-image: url($url + "@2x.png")
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
+    background-image: url($url + "@3x.png")
+
+// 不换行
+no-wrap()
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+
+//宽度
+w(px) 
+  width=unit(px/$rem-size,rem)
+
+//高度
+h(px) 
+  width=unit(px/$rem-size,rem)
+
+
+
+//背景图片定义
+bg_size(px)
+  background-size=unit(px/$rem-size,rem)
+
+
+//line-height
+l_h(px)
+  line-height=unit(px/$rem-size,rem)
+
+//上下左右
+to_p(px)
+  top=unit(px/$rem-size,rem)
+
+botto_m(px)
+    bottom=unit(px/$rem-size,rem)
+
+lef_t(px)
+  left=unit(px/$rem-size,rem)
+
+righ_t(px)
+  right=unit(px/$rem-size,rem)
+
+//padding
+add(px)
+  padding=unit(px/$rem-size,rem)
+
+//bug
+bug(color)
+  border:1px color solid
+
+//padding-top
+p_t(px)
+  padding-top=unit(px/$rem-size,rem)
+
+//padding-left
+p_l(px)
+  padding-left=unit(px/$rem-size,rem)  
+
+//padding-right
+p_r(px)
+  padding-left=unit(px/$rem-size,rem)
+
+//padding-bottom
+p_b(px)
+  padding-bottom=unit(px/$rem-size,rem)
+
+
+//margin-top
+m_t(px)
+  margin-top=unit(px/$rem-size,rem)
+
+//margin-left
+m_l(px)
+  margin-left=unit(px/$rem-size,rem)  
+
+//margin-left
+m_r(px)
+  margin-left=unit(px/$rem-size,rem)
+
+//margin-bottom
+m_b(px)
+  margin-bottom=unit(px/$rem-size,rem)
+
+With(px)
+  width unit(px/$rem-size,rem)
